@@ -4,11 +4,10 @@ function hardWords(arr){
     for(let i=0; i<letter.length; i++){
         if((letter[i].endsWith('.') || letter[i].endsWith(',')) && letter[i].includes('_')){
             letter[i] = letter[i].slice(0,letter[i].length-1)
-            console.log(letter[i])
         } 
         arr[0].forEach(word => {
             if(letter[i].includes('_') && letter[i].length === word.length){
-                letter[i] = words
+                letter[i] = word
             }
         });
     }
@@ -27,6 +26,7 @@ hardWords([
       'sprained'
     ]
   ])
+
   //Hi, grandma! I'm so glad to write to you. During the winter vacation, so amazing things happened. My dad bought me a sled. 
   //Mom started a new job as a pharmacist. My brother's ankle is sprained, and now it bothers me even more. Every night Mom cooks
   // pie on your recipe because it is the most delicious. I hope this year Santa will bring me a robot.

@@ -14,3 +14,17 @@ function pascalCodeSplitter(str){
 
 pascalCodeSplitter('SplitMeIfYouCanHaHaYouCantOrYouCan')
 //Split, Me, If, You, Can, Ha, Ha, You, Cant, Or, You, Can
+
+
+
+
+
+
+
+
+
+
+
+
+
+
