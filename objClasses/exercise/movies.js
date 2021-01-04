@@ -1,25 +1,35 @@
 function movies(arr){
-    let records = []
+  let movies = []
 
-    arr.forEach(line => {
-        let movies = {}
-        if(line.includes('addMovie')){
-            let movie = line.substring(9)
-            movies['name'] = movie
-        }else if(line.includes('directedBy')){
-             let directed = line.split(' directedBy ')
-
-             records.forEach(movie => {
-                if(movie.hasOwnProperty(directed[0])){
-                    movie['director'] = directed[1]
-                    console.log(directed[1])
-                 }
-             })
+  for(let line of arr){
+    let movie = {}
+    if(line.includes('addMovie')){
+      movie['name'] = line.substring(9)
+      movies.push(movie)
+    }else if(line.includes('directedBy')){
+        let [name,director] = line.split(' directedBy ');
+        movies.find(el => {
+          if(el.name == name){
+            el.director = director
+          }
+        })
+        // let myMovie = movies.find(el => el.name == name)
+        // if(myMovie) myMovie['director'] = director
+    }else if(line.includes('onDate')){
+      let [name, date] = line.split(' onDate ')
+      movies.find(el => {
+        if(el.name == name){
+          el.date = date
         }
-        if(movies.hasOwnProperty('name')) records.push(movies)
-    });
+      })
+    }
+  }
 
-  // console.log(records)
+  movies.forEach(m => {
+    if(m.name && m.director && m.date){
+      console.log(JSON.stringify(m))
+    }
+  })
 }
 
 movies([

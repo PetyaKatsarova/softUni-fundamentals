@@ -1,24 +1,23 @@
 function inventory(arr){
-    let records = []
+  let heroes = []
 
-    arr.forEach(hero => {
-        let objHero = {}
-        let[name, level, items ] = hero.split(' / ')
-        // sort items alphabetically
-        items = items.split(', ').sort((a,b) => a.localeCompare(b)).join(', ')
-        objHero['Hero'] = name
-        objHero['level'] = level
-        objHero['items'] = items
-        records.push(objHero)
-    })
+  for(let line of arr){
+      let hero = {}
+      let [name, level, items] = line.split(' / ')
+      hero.name = name
+      hero.level = Number(level)
+      items = items.split(', ').sort((a,b) => a.localeCompare(b)).join(', ') // sort alphabetically
+      hero.items = items
+      heroes.push(hero)
+  }
 
-    arr.forEach(record => {
-        for(let key of Object.keys(record)){
-            console.log(key)
-        }
-     })
-
-     //console.log(records)
+  // sort the objects in the arr: asc by level 
+  heroes.sort((a,b) => a.level - b.level)
+        .forEach(hero => {
+          console.log(`Hero: ${hero.name}`)
+          console.log(`level => ${hero.level}`)
+          console.log(`items => ${hero.items}`)
+        })
 }
 
 inventory([
@@ -26,7 +25,7 @@ inventory([
     'Derek / 12 / BarrelVest, DestructionSword',
     'Hes / 1 / Desolator, Sentinel, Antara'
   ])
-//Hero: Hes
+///Hero: Hes
 // level => 1
 // items => Antara, Desolator, Sentinel
 // Hero: Derek
